@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/item_feed_username_textview"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:text="nick"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bold"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:text="публикует"
+        android:textColor="@color/black"
+        android:fontFamily="@font/regular"
+        android:textSize="20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/item_feed_author_textview"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bold"
+        android:textSize="30dp"
+        />
+
+    <TextView
+        android:id="@+id/item_feed_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bold"
+        android:textSize="60dp"
+        android:clickable="true"
+        android:onClick="onClick"
+        />
+
+    <TextView
+        android:id="@+id/item_feed_genre_textview"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/hints"
+        android:fontFamily="@font/regular"
+        android:textSize="20dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/item_feed_set_application_book_button"
+        android:layout_width="220dp"
+        android:layout_height="68dp"
+        android:text="Отправить заявку"
+        android:fontFamily="@font/bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/purple_button_enabled"
+        style="@style/Widget.AppCompat.Button" />
+
+</LinearLayout>

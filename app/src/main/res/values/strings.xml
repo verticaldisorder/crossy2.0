@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">crossy 2.0</string>
+
+    <string name="welcome_to_crossy">welcome to crossy.</string>
+    <string name="or">или</string>
+    <string name="sign_in">Зарегистрироваться</string>
+    <string name="log_in">Войти</string>
+    <string name="registration">Регистрация</string>
+    <string name="create_your_account">Создайте свой аккаунт</string>
+    <string name="email">электронная почта</string>
+    <string name="nickname">имя пользователя</string>
+    <string name="password">пароль</string>
+    <string name="address">адрес для отправки</string>
+    <string name="hand_over_personally_checkbox">встречаюсь лично</string>
+    <string name="hand_on_post_checkbox">отправляю по почте</string>
+    <string name="sign_in_activity_text">Войти</string>
+    <string name="sign_in_account">Выполните вход в свой аккаунт</string>
+    <string name="sign_in_button_text">Войти</string>
+
+    <string name="toast_all_fields">Выберите как минимум одну опцию для обмена</string>
+    <string name="toast_empty_fields">Введите корректный e-mail</string>
+    <string name="toast_empty_address">Заполните все поля</string>
+    <string name="books_in_library">книг в библиотеке</string>
+    <string name="crossed_books">книг обменяно</string>
+    <string name="reviews">отзывов</string>
+    <string name="profile_item_title">Profile</string>
+    <string name="feed_item_title">Feed</string>
+    <string name="chats_item_title">Chats</string>
+    <string name="title">название</string>
+    <string name="author">автор</string>
+    <string name="genre">жанр</string>
+    <string name="add_book_button">Добавить</string>
+    <string name="add_book"><u>Добавить книгу</u></string>
+    <string name="accept">Принять</string>
+    <string name="decline">Отклонить</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_up">Зарегистрироваться</string>
+</resources>

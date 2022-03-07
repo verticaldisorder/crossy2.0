@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SignUpFragment"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/sign_up_registration_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registration"
+        android:fontFamily="@font/bold"
+        android:textColor="@color/black"
+        android:textSize="55dp"
+        android:gravity="center"
+        android:layout_marginTop="75dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/sign_up_create_account_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="@string/create_your_account"
+        android:gravity="center"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_registration_textview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/sign_up_email_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:hint="@string/email"
+        android:textColorHint="@color/hints"
+        android:fontFamily="@font/regular"
+        android:textColorHighlight="@color/purple_button"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edit_text_background"
+        style="@style/editTextCustom"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_create_account_textview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/sign_up_nickname_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:hint="@string/nickname"
+        android:textColorHint="@color/hints"
+        android:fontFamily="@font/regular"
+        android:textColorHighlight="@color/purple_button"
+        android:inputType="text"
+        android:background="@drawable/edit_text_background"
+        style="@style/editTextCustom"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_email_edittext"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/sign_up_password_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:hint="@string/password"
+        android:textColorHint="@color/hints"
+        android:fontFamily="@font/regular"
+        android:textColorHighlight="@color/purple_button"
+        android:inputType="textPassword"
+        android:background="@drawable/edit_text_background"
+        style="@style/editTextCustom"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_nickname_edittext"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/sign_up_address_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:hint="@string/address"
+        android:textColorHint="@color/hints"
+        android:fontFamily="@font/regular"
+        android:textColorHighlight="@color/purple_button"
+        android:inputType="text"
+        android:background="@drawable/edit_text_background"
+        style="@style/editTextCustom"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_password_edittext"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/sign_up_hand_over_personally_checkbox"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hand_over_personally_checkbox"
+        android:textColor="@color/black"
+        android:fontFamily="@font/regular"
+        android:textSize="20dp"
+        style="@style/checkboxCustom"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_address_edittext"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/sign_up_hand_on_post_checkbox"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hand_on_post_checkbox"
+        android:textColor="@color/black"
+        android:fontFamily="@font/regular"
+        android:textSize="20dp"
+        style="@style/checkboxCustom"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_hand_over_personally_checkbox"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sign_up_registration_button"
+        android:layout_width="330dp"
+        android:layout_height="68dp"
+        android:text="@string/sign_in"
+        android:fontFamily="@font/bold"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/yellow_button_enabled"
+        style="@style/Widget.AppCompat.Button"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_hand_on_post_checkbox"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

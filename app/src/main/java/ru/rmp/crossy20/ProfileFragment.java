@@ -2,57 +2,66 @@ package ru.rmp.crossy20;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.List;
+
+import ru.rmp.crossy20.utils.FirebaseManager;
+
 public class ProfileFragment extends Fragment {
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser user = mAuth.getCurrentUser();
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    TextView nickname;
+    TextView address;
+    TextView addBookTextView;
+    CheckBox handOnPersonally;
+    CheckBox handOnPost;
+    TextView booksInLibrary;
+    TextView booksCrossed;
+    TextView booksReviews;
 
     public ProfileFragment() {
-        // Required empty public constructor
+        super(R.layout.profile_fragment);
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        nickname = view.findViewById(R.id.profile_nickname_textview);
+        address = view.findViewById(R.id.profile_address_textview);
+        addBookTextView = view.findViewById(R.id.profile_add_book_in_library_button);
+        handOnPersonally = view.findViewById(R.id.profile_hand_on_personally_uneditable_checkbox);
+        handOnPost = view.findViewById(R.id.profile_hand_on_post_uneditable_checkbox);
+        booksInLibrary = view.findViewById(R.id.profile_books_in_library_count_textview);
+        booksCrossed = view.findViewById(R.id.profile_crossed_books_count_textview);
+        booksReviews = view.findViewById(R.id.profile_reviews_count_textview);
+
+        setDataInFields();
+        setProfileData();
+        initClickableFields();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -60,5 +69,43 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.profile_fragment, container, false);
+    }
+
+    private void setDataInFields() {
+        List<Object> profileData = FirebaseManager.getUserProfileInfo(user.getUid());
+        nickname.setText(profileData.get(0).toString());
+        address.setText(profileData.get(1).toString());
+        handOnPersonally.setChecked((Boolean) profileData.get(2));
+        handOnPost.setChecked((Boolean) profileData.get(3));
+    }
+
+    private void setProfileData() {
+        List<String> profileData = FirebaseManager.getProfileData(user.getUid());
+        booksInLibrary.setText(profileData.get(0).toString());
+        booksCrossed.setText(profileData.get(0).toString());
+        booksReviews.setText(profileData.get(0).toString());
+    }
+
+    private void initClickableFields() {
+        booksInLibrary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO переход в библиотеку
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container_profile_activity, LibraryFragment.class, null)
+                        .commit();
+            }
+        });
+
+        addBookTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container_profile_activity, AddBookFragment.class, null)
+                        .commit();
+            }
+        });
     }
 }

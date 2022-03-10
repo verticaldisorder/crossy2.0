@@ -28,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+import ru.rmp.crossy20.activities.ProfileActivity;
+
 public class SignUpFragment extends Fragment {
     private final String TAG = "LOG_TAG";
 
@@ -144,7 +146,8 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot added");
-                        //TODO открыть профиль пользователя
+                        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

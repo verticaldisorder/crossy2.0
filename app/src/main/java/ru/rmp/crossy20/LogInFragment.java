@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -21,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import ru.rmp.crossy20.activities.ProfileActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,7 +85,8 @@ public class LogInFragment extends Fragment {
                                     Log.d(TAG, "user successfully logged in");
                                     mAuth.updateCurrentUser(mAuth.getCurrentUser());
 
-                                    //TODO открыть профиль пользователя
+                                    Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                                    startActivity(intent);
                                 } else {
                                     Log.d(TAG, "some problems");
                                 }

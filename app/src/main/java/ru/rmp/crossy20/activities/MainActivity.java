@@ -1,11 +1,15 @@
-package ru.rmp.crossy20;
+package ru.rmp.crossy20.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import ru.rmp.crossy20.LogInFragment;
+import ru.rmp.crossy20.R;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -17,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if(mUser != null) {
-            //TODO открыть страницу пользователя
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
 
         } else {
             //открыть окно авторизации

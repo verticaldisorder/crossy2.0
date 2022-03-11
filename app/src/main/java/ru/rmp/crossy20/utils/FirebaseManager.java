@@ -163,4 +163,42 @@ public class FirebaseManager {
                 return books;
     }
 
+    public static String getUserEmail(String uid) {
+        final String[] result = new String[1];
+        DocumentReference docRef = db.collection("bookholder").document(uid);
+
+
+        docRef
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            result[0] = task.getResult().getData().get("email").toString();
+                        }
+                    }
+                });
+        return result[0];
+    }
+
+    public static String getUserUidByNickname(String nickname) {
+        final String[] result = new String[1];
+        CollectionReference colRef = db.collection("bookholder");
+
+        colRef
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                if (doc.getData().get("nickname").equals(nickname)) {
+                                    result[0] = doc.getId();
+                                }
+                            }
+                        }
+                    }
+                });
+        return result[0];
+    }
 }

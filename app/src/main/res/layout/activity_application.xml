@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/application_nickname_textview"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bold"
+        android:textSize="30dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/hints"
+        android:fontFamily="@font/regular"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="отправляет заявку на"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/application_book_textview"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bold"
+        android:textSize="30dp"
+        />
+
+    <Button
+        android:layout_width="330dp"
+        android:layout_height="68dp"
+        android:id="@+id/application_accept_button"
+        android:fontFamily="@font/bold"
+        android:text="@string/accept"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/yellow_button_enabled"
+        style="@style/Widget.AppCompat.Button"
+        />
+
+    <Button
+        android:layout_width="330dp"
+        android:layout_height="68dp"
+        android:id="@+id/application_decline_button"
+        android:fontFamily="@font/bold"
+        android:text="@string/decline"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/purple_button_enabled"
+        style="@style/Widget.AppCompat.Button"
+        />
+
+</LinearLayout>

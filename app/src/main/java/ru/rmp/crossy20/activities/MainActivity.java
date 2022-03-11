@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import ru.rmp.crossy20.LogInFragment;
 import ru.rmp.crossy20.R;
+import ru.rmp.crossy20.models.BookRequest;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if(mUser != null) {
+            new BookRequest().start();
+
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
 

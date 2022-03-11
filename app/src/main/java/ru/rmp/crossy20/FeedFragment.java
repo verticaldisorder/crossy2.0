@@ -2,46 +2,54 @@ package ru.rmp.crossy20;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FeedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
+import ru.rmp.crossy20.adapters.FeedAdapter;
+import ru.rmp.crossy20.models.Book;
+
 public class FeedFragment extends Fragment {
+    ArrayList<Book> books = new ArrayList<Book>();
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    TextView nickname;
+    TextView author;
+    TextView title;
+    TextView genre;
 
     public FeedFragment() {
-        // Required empty public constructor
+        super(R.layout.feed_fragment);
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FeedFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        nickname = view.findViewById(R.id.item_feed_username_textview);
+        author = view.findViewById(R.id.item_feed_author_textview);
+        title = view.findViewById(R.id.item_feed_title_textview);
+        genre = view.findViewById(R.id.item_feed_genre_textview);
+
+        setTestData();
+        //TODO here math model return arraylist of books
+        RecyclerView recyclerView = view.findViewById(R.id.feed_recyclerview);
+        FeedAdapter adapter = new FeedAdapter(getContext(), books);
+        recyclerView.setAdapter(adapter);
+    }
+
     public static FeedFragment newInstance(String param1, String param2) {
         FeedFragment fragment = new FeedFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,10 +57,6 @@ public class FeedFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -60,5 +64,11 @@ public class FeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.feed_fragment, container, false);
+    }
+
+    private void setTestData() {
+        books.add(new Book("author", "title", "genre", "bookholder", false));
+        books.add(new Book("author2", "title2", "genre2", "bookholder2", false));
+        books.add(new Book("author3", "title3", "genre3", "bookholder3", false));
     }
 }

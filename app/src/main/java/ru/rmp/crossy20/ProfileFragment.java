@@ -12,16 +12,31 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import ru.rmp.crossy20.models.User;
 import ru.rmp.crossy20.utils.FirebaseManager;
 
 public class ProfileFragment extends Fragment {
+    View profileView;
+
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRef = db.collection("bookholder").document(user.getUid());
 
     TextView nickname;
     TextView address;
@@ -36,23 +51,25 @@ public class ProfileFragment extends Fragment {
         super(R.layout.profile_fragment);
     }
 
-    public static ProfileFragment newInstance(String param1, String param2) {
+    public static ProfileFragment newInstance() {
         ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
         return fragment;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        nickname = view.findViewById(R.id.profile_nickname_textview);
-        address = view.findViewById(R.id.profile_address_textview);
-        addBookTextView = view.findViewById(R.id.profile_add_book_in_library_button);
-        handOnPersonally = view.findViewById(R.id.profile_hand_on_personally_uneditable_checkbox);
-        handOnPost = view.findViewById(R.id.profile_hand_on_post_uneditable_checkbox);
-        booksInLibrary = view.findViewById(R.id.profile_books_in_library_count_textview);
-        booksCrossed = view.findViewById(R.id.profile_crossed_books_count_textview);
-        booksReviews = view.findViewById(R.id.profile_reviews_count_textview);
+
+        nickname = profileView.findViewById(R.id.profile_nickname_textview);
+        address = profileView.findViewById(R.id.profile_address_textview);
+        addBookTextView = profileView.findViewById(R.id.profile_add_book_in_library_button);
+        handOnPersonally = profileView.findViewById(R.id.profile_hand_on_personally_uneditable_checkbox);
+        handOnPersonally.setEnabled(false);
+        handOnPost = profileView.findViewById(R.id.profile_hand_on_post_uneditable_checkbox);
+        handOnPost.setEnabled(false);
+        booksInLibrary = profileView.findViewById(R.id.profile_books_in_library_count_textview);
+        booksCrossed = profileView.findViewById(R.id.profile_crossed_books_count_textview);
+        booksReviews = profileView.findViewById(R.id.profile_reviews_count_textview);
 
         setDataInFields();
         setProfileData();
@@ -68,22 +85,85 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.profile_fragment, container, false);
+        profileView = inflater.inflate(R.layout.profile_fragment, container, false);
+        return profileView;
+
     }
 
     private void setDataInFields() {
-        List<Object> profileData = FirebaseManager.getUserProfileInfo(user.getUid());
-        nickname.setText(profileData.get(0).toString());
-        address.setText(profileData.get(1).toString());
-        handOnPersonally.setChecked((Boolean) profileData.get(2));
-        handOnPost.setChecked((Boolean) profileData.get(3));
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                nickname.setText(task.getResult().getString("nickname"));
+                address.setText(task.getResult().getString("address"));
+                handOnPersonally.setChecked(task.getResult().getBoolean("hand_over_personally"));
+                handOnPost.setChecked(task.getResult().getBoolean("hand_over_post"));
+            }
+        });
+
+
     }
 
     private void setProfileData() {
-        List<String> profileData = FirebaseManager.getProfileData(user.getUid());
-        booksInLibrary.setText(profileData.get(0).toString());
-        booksCrossed.setText(profileData.get(0).toString());
-        booksReviews.setText(profileData.get(0).toString());
+        CollectionReference colRef = db.collection("book");
+        colRef.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        System.out.println("success: " + task.isSuccessful());
+                        if (task.isSuccessful()) {
+                            int count = 0;
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                System.out.println(doc);
+                                if (doc.getData().get("bookholder_id").equals(user.getUid())) {
+                                    count++;
+                                }
+                            }
+
+                            booksInLibrary.setText(""+String.valueOf(count));
+                        } else {
+                            System.out.println("smth wrong");
+                        }
+
+
+                    }
+                });
+
+        colRef.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int count = 0;
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                if (doc.getData().get("bookholder_id").equals(user.getUid()) && doc.getBoolean("is_crossed")) {
+                                    count++;
+                                }
+                            }
+                            booksCrossed.setText(""+String.valueOf(count));
+                        }
+                    }
+                });
+
+        CollectionReference reviewColRef = db.collection("review");
+        Query thirdQuery = db.collection("review").whereEqualTo("author_id", user.getUid());
+        reviewColRef.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            int count = 0;
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                if(doc.getData().get("author_id").equals(user.getUid())) {
+                                    count++;
+                                }
+                            }
+                            booksReviews.setText(""+String.valueOf(count));
+                        }
+                    }
+                });
+
     }
 
     private void initClickableFields() {

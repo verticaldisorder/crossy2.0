@@ -11,8 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -24,6 +30,8 @@ public class LibraryFragment extends Fragment {
     RecyclerView libraryRecyclerView;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference colRef = db.collection("book");
 
     public LibraryFragment() {
         super(R.layout.library_fragment);
@@ -56,11 +64,33 @@ public class LibraryFragment extends Fragment {
 
     private void setData() {
         ArrayList<Book> books = new ArrayList<>();
+        colRef
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                if (doc.getData().get("bookholder_id").equals(user.getUid()) && doc.getData().get("is_crossed").equals(false)) {
 
-        books = FirebaseManager.getBooksForUserLibrary(user.getUid());
+                                    System.out.println("NOW IN BOOKS ARE: " + doc.getData().toString());
 
-        LibraryAdapter adapter = new LibraryAdapter(getContext(), books);
-        System.out.println("BOOKS ARE EMPTY: " + books.isEmpty());
-        libraryRecyclerView.setAdapter(adapter);
+                                    Book book = new Book(doc.getData().get("author").toString(), doc.getData().get("title").toString(), doc.getData().get("genre_id").toString(), doc.getData().get("bookholder_id").toString(), false);
+                                    books.add(book);
+
+                                    System.out.println("ARE BOOKS IN SETDATA EMPTY: " + books.isEmpty());
+
+
+                                }
+
+                                LibraryAdapter adapter = new LibraryAdapter(getActivity(), books);
+                                System.out.println("BOOKS ARE EMPTY: " + books.isEmpty());
+                                libraryRecyclerView.setAdapter(adapter);
+                            }
+                        }
+
+
+                    }
+                });
     }
 }

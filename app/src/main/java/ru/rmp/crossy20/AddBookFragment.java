@@ -64,7 +64,7 @@ public class AddBookFragment extends Fragment {
                 if (FirebaseManager.addBook(author.getText().toString(), title.getText().toString(), genre.getText().toString())) {
                     getParentFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container_profile_activity, ProfileFragment.class, null)
+                            .replace(R.id.fragment_container_profile_activity, ProfileFragment.newInstance(), null)
                             .commit();
                 } else {
                     Toast.makeText(getContext(), "Что-то пошло не так, книга не добавлена", Toast.LENGTH_LONG).show();

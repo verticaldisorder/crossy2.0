@@ -48,6 +48,7 @@ public class LogInFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         emailEditText = view.findViewById(R.id.login_email_edittext);
         passwordEditText = view.findViewById(R.id.login_password_edittext);
+        signUp = view.findViewById(R.id.login_signup_textview);
         signInButton = view.findViewById(R.id.login_login_button);
 
         initButtons();

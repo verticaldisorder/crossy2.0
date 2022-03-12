@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@id/profile_add_book_in_library_button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        tools:ignore="Deprecated" />
 
     <CheckBox
         android:id="@+id/profile_hand_on_post_uneditable_checkbox"
@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@id/profile_hand_on_personally_uneditable_checkbox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        tools:ignore="Deprecated" />
 
 
     <GridLayout

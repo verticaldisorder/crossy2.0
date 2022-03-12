@@ -47,10 +47,8 @@ public class FeedFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    public static FeedFragment newInstance(String param1, String param2) {
+    public static FeedFragment newInstance() {
         FeedFragment fragment = new FeedFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 

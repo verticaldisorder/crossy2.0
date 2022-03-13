@@ -100,4 +100,21 @@ public class FirebaseManager {
                 });
         return result[0];
     }
+
+    public static String getUsernameByUid(String uid) {
+        final String[] result = new String[1];
+        DocumentReference documentReference = db.collection("bookholder").document(user.getUid());
+
+        documentReference
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            result[0] = task.getResult().getData().get("nickname").toString();
+                        }
+                    }
+                });
+        return result[0];
+    }
 }

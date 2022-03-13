@@ -39,4 +39,6 @@
     <string name="profile">Профиль</string>
     <string name="Feed">Лента</string>
     <string name="chat">Чат</string>
+    <string name="send">Отправить</string>
+    <string name="message">сообщение</string>
 </resources>

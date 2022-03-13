@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 import ru.rmp.crossy20.activities.ApplicationActivity;
-import ru.rmp.crossy20.utils.ApplicationDialogFragment;
 
 public class BookRequest extends Thread {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();

@@ -15,5 +15,10 @@
         android:name="ru.rmp.crossy20.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" />
-    <fragment android:id="@+id/placeholder" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="ru.rmp.crossy20.ChatFragment"
+        android:label="chat_fragment"
+        tools:layout="@layout/chat_fragment" />
+
 </navigation>

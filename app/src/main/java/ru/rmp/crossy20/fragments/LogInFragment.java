@@ -1,4 +1,4 @@
-package ru.rmp.crossy20;
+package ru.rmp.crossy20.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ru.rmp.crossy20.R;
 import ru.rmp.crossy20.activities.ProfileActivity;
 
 /**

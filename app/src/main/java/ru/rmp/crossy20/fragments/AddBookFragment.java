@@ -1,4 +1,4 @@
-package ru.rmp.crossy20;
+package ru.rmp.crossy20.fragments;
 
 import android.os.Bundle;
 
@@ -13,8 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.common.base.MoreObjects;
-
+import ru.rmp.crossy20.R;
 import ru.rmp.crossy20.utils.FirebaseManager;
 
 public class AddBookFragment extends Fragment {
@@ -65,6 +64,7 @@ public class AddBookFragment extends Fragment {
                     getParentFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container_profile_activity, ProfileFragment.newInstance(), null)
+                            .addToBackStack("tag")
                             .commit();
                 } else {
                     Toast.makeText(getContext(), "Что-то пошло не так, книга не добавлена", Toast.LENGTH_LONG).show();

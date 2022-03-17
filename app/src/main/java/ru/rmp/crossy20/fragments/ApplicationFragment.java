@@ -1,5 +1,5 @@
 
-package ru.rmp.crossy20;
+package ru.rmp.crossy20.fragments;
 
 import android.os.Bundle;
 
@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import ru.rmp.crossy20.R;
 
 /**
  * A simple {@link Fragment} subclass.

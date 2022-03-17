@@ -11,15 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import ru.rmp.crossy20.R;
 import ru.rmp.crossy20.fragments.FeedFragment;
 import ru.rmp.crossy20.fragments.ProfileFragment;
-import ru.rmp.crossy20.R;
+import ru.rmp.crossy20.fragments.ReviewFragment;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ReviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_review);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -28,11 +29,8 @@ public class ProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.feedFragment:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.fragment_container_profile_activity, FeedFragment.newInstance(), null)
-                                .addToBackStack("tag")
-                                .commit();
+                        Intent intent = new Intent(ReviewActivity.this, ProfileActivity.class);
+                        startActivity(intent);
                         return false;
 
                     case R.id.profileFragment:
@@ -44,8 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
                         return false;
 
                     case R.id.chatFragment:
-                        Intent intent = new Intent(ProfileActivity.this, ChatActivity.class);
-                        startActivity(intent);
+                        Intent intent2 = new Intent(ReviewActivity.this, ChatActivity.class);
+                        startActivity(intent2);
                         return false;
                 }
                 return false;
@@ -54,7 +52,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container_profile_activity, ProfileFragment.newInstance(), null)
+                .add(R.id.fragment_container_review_activity, ReviewFragment.class, null)
+                .addToBackStack("tag")
                 .commit();
     }
 }

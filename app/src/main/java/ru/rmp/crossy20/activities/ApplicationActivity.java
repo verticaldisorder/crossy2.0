@@ -8,11 +8,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
@@ -25,8 +34,12 @@ public class ApplicationActivity extends AppCompatActivity {
     Button accept;
     Button decline;
 
+    String email;
+    String uid;
+
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser mUser = mAuth.getCurrentUser();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +68,10 @@ public class ApplicationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_EMAIL, FirebaseManager.getUserEmail(FirebaseManager.getUserUidByNickname(nickname.getText().toString())));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Обмен книгами с пользователем " + mUser.getDisplayName());
+                uid = getUserUidByNickname(nickname.getText().toString());
+                getUserEmail(uid);
+                intent.putExtra(Intent.EXTRA_EMAIL, email);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Обмен книгами с пользователем " + nickname);
 
                 PackageManager packageManager = getPackageManager();
                 List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
@@ -74,5 +89,44 @@ public class ApplicationActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void getUserEmail(String uid) {
+        final String[] result = new String[1];
+        DocumentReference docRef = db.collection("bookholder").document(uid);
+
+
+        docRef
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            email = task.getResult().getData().get("email").toString();
+                        }
+                    }
+                });
+
+    }
+
+    private String getUserUidByNickname(String nickname) {
+        final String[] result = new String[1];
+        CollectionReference colRef = db.collection("bookholder");
+
+        colRef
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                if (doc.getData().get("nickname").equals(nickname)) {
+                                    result[0] = doc.getId();
+                                }
+                            }
+                        }
+                    }
+                });
+        return result[0];
     }
 }

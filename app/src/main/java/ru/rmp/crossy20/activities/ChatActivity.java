@@ -11,9 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import ru.rmp.crossy20.ChatFragment;
-import ru.rmp.crossy20.FeedFragment;
-import ru.rmp.crossy20.ProfileFragment;
+import ru.rmp.crossy20.fragments.ChatFragment;
+import ru.rmp.crossy20.fragments.ProfileFragment;
 import ru.rmp.crossy20.R;
 
 public class ChatActivity extends AppCompatActivity {
@@ -37,6 +36,7 @@ public class ChatActivity extends AppCompatActivity {
                         getSupportFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.fragment_container_profile_activity, ProfileFragment.newInstance(), null)
+                                .addToBackStack("tag")
                                 .commit();
                         return false;
 

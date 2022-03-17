@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    tools:context=".AddBookFragment">
+    tools:context=".fragments.AddBookFragment">
 
     <TextView
         android:id="@+id/add_book_add_book_textview"

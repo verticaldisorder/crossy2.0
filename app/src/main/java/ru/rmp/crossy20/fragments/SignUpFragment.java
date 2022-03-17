@@ -1,4 +1,4 @@
-package ru.rmp.crossy20;
+package ru.rmp.crossy20.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+import ru.rmp.crossy20.R;
 import ru.rmp.crossy20.activities.ProfileActivity;
 
 public class SignUpFragment extends Fragment {

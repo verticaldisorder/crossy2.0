@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/feedFragment"
-        android:name="ru.rmp.crossy20.FeedFragment"
+        android:name="ru.rmp.crossy20.fragments.FeedFragment"
         android:label="feed_fragment"
         tools:layout="@layout/feed_fragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="ru.rmp.crossy20.ProfileFragment"
+        android:name="ru.rmp.crossy20.fragments.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" />
     <fragment
         android:id="@+id/chatFragment"
-        android:name="ru.rmp.crossy20.ChatFragment"
+        android:name="ru.rmp.crossy20.fragments.ChatFragment"
         android:label="chat_fragment"
         tools:layout="@layout/chat_fragment" />
 

@@ -84,8 +84,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         }
     }
 
-
-
     private static void initButton(Button button, String applicant, String book) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override

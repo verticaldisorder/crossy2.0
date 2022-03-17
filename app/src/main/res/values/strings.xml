@@ -41,4 +41,5 @@
     <string name="chat">Чат</string>
     <string name="send">Отправить</string>
     <string name="message">сообщение</string>
+    <string name="reviews_textview">Отзывы</string>
 </resources>

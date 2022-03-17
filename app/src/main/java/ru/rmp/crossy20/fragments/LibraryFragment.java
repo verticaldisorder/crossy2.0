@@ -1,4 +1,4 @@
-package ru.rmp.crossy20;
+package ru.rmp.crossy20.fragments;
 
 import android.os.Bundle;
 
@@ -22,9 +22,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+import ru.rmp.crossy20.R;
 import ru.rmp.crossy20.adapters.LibraryAdapter;
 import ru.rmp.crossy20.models.Book;
-import ru.rmp.crossy20.utils.FirebaseManager;
 
 public class LibraryFragment extends Fragment {
     RecyclerView libraryRecyclerView;
@@ -37,9 +37,8 @@ public class LibraryFragment extends Fragment {
         super(R.layout.library_fragment);
     }
 
-    public static LibraryFragment newInstance(String param1, String param2) {
+    public static LibraryFragment newInstance() {
         LibraryFragment fragment = new LibraryFragment();
-        Bundle args = new Bundle();
         return fragment;
     }
 

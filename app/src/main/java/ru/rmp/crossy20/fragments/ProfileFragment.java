@@ -1,5 +1,6 @@
-package ru.rmp.crossy20;
+package ru.rmp.crossy20.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,11 +25,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ru.rmp.crossy20.models.User;
-import ru.rmp.crossy20.utils.FirebaseManager;
+import ru.rmp.crossy20.R;
+import ru.rmp.crossy20.activities.ReviewActivity;
 
 public class ProfileFragment extends Fragment {
     View profileView;
@@ -130,6 +128,26 @@ public class ProfileFragment extends Fragment {
                     }
                 });
 
+        CollectionReference reviewsRef = db.collection("review");
+        reviewsRef
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int count = 0;
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                                System.out.println(doc);
+                                if (doc.getData().get("reviewed_id").equals(user.getUid())) {
+                                    count++;
+                                }
+                            }
+                            System.out.println("Count: " + count);
+                            booksReviews.setText(""+String.valueOf(count));
+                        }
+                    }
+                });
+
         colRef.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -157,9 +175,10 @@ public class ProfileFragment extends Fragment {
                             for (QueryDocumentSnapshot doc : task.getResult()) {
                                 if(doc.getData().get("author_id").equals(user.getUid())) {
                                     count++;
+                                    booksReviews.setText(""+String.valueOf(count));
                                 }
                             }
-                            booksReviews.setText(""+String.valueOf(count));
+
                         }
                     }
                 });
@@ -174,7 +193,16 @@ public class ProfileFragment extends Fragment {
                 getParentFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container_profile_activity, LibraryFragment.class, null)
+                        .addToBackStack("tag")
                         .commit();
+            }
+        });
+
+        booksReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ReviewActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -184,6 +212,7 @@ public class ProfileFragment extends Fragment {
                 getParentFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container_profile_activity, AddBookFragment.class, null)
+                        .addToBackStack("tag")
                         .commit();
             }
         });

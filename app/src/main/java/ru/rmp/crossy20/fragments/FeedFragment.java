@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import ru.rmp.crossy20.R;
 import ru.rmp.crossy20.adapters.FeedAdapter;
 import ru.rmp.crossy20.models.Book;
+import ru.rmp.crossy20.utils.MathModelUtil;
 
 public class FeedFragment extends Fragment {
     ArrayList<Book> books = new ArrayList<Book>();
@@ -39,8 +40,9 @@ public class FeedFragment extends Fragment {
         title = view.findViewById(R.id.item_feed_title_textview);
         genre = view.findViewById(R.id.item_feed_genre_textview);
 
-        setTestData();
-        //TODO here math model return arraylist of books
+        MathModelUtil mathModelUtil = new MathModelUtil();
+        books = mathModelUtil.getRecommendedBooksForCurrentUser();
+
         RecyclerView recyclerView = view.findViewById(R.id.feed_recyclerview);
         FeedAdapter adapter = new FeedAdapter(getContext(), books);
         recyclerView.setAdapter(adapter);
@@ -63,9 +65,5 @@ public class FeedFragment extends Fragment {
         return inflater.inflate(R.layout.feed_fragment, container, false);
     }
 
-    private void setTestData() {
-        books.add(new Book("author", "title", "genre", "bookholder", false));
-        books.add(new Book("author2", "title2", "genre2", "bookholder2", false));
-        books.add(new Book("author3", "title3", "genre3", "bookholder3", false));
-    }
+
 }

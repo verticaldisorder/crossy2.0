@@ -24,9 +24,12 @@ import java.util.Map;
 
 import ru.rmp.crossy20.R;
 import ru.rmp.crossy20.fragments.AllApplicationsFragment;
+import ru.rmp.crossy20.fragments.LeaveReviewFragment;
+import ru.rmp.crossy20.models.Exchange;
 
 public class ApplicationDialogFragment extends DialogFragment {
-    String exchangeDocumentId;
+    Exchange exchangeDocument;
+    static String reviewedId;
     String message;
     int id = 0;
 
@@ -36,9 +39,9 @@ public class ApplicationDialogFragment extends DialogFragment {
     CollectionReference colRef = db.collection("exchange");
     CollectionReference reviewsColRef = db.collection("review");
 
-    public ApplicationDialogFragment(String message, String exchangeDocumentId) {
+    public ApplicationDialogFragment(String message, Exchange exchangeDocument) {
         this.message = message;
-        this.exchangeDocumentId = exchangeDocumentId;
+        this.exchangeDocument = exchangeDocument;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -64,12 +67,12 @@ public class ApplicationDialogFragment extends DialogFragment {
                                 object.put("is_crossed_by_accepted", true);
                             }
                             colRef
-                                    .document(exchangeDocumentId)
+                                    .document(exchangeDocument.getExchangeId())
                                     .set(object, SetOptions.merge())
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            System.out.println("document re-write successfully");
+                                            System.out.println("document re-wrote successfully");
                                         }
                                     });
 
@@ -86,7 +89,20 @@ public class ApplicationDialogFragment extends DialogFragment {
                     .setPositiveButton("Оставить отзыв", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            //TODO переходить на экран оставления отзывов
+                            //переход на экран оставления отзывов
+
+                            if(AllApplicationsFragment.isCurrentUserAnApplicant()) {
+                                reviewedId = exchangeDocument.getAccepted();
+
+                            } else {
+                                reviewedId = exchangeDocument.getApplicant();
+                            }
+
+                            getParentFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fragment_container_profile_activity, LeaveReviewFragment.newInstance(), null)
+                                    .addToBackStack("tag")
+                                    .commit();
                         }
                     })
                     .setNegativeButton("Отмена", null);
@@ -102,6 +118,10 @@ public class ApplicationDialogFragment extends DialogFragment {
 
     public void setDialogWithReviewButton() {
         id = 2;
+    }
+
+    public static String getExchangeDocument() {
+        return reviewedId;
     }
 
 }

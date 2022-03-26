@@ -44,4 +44,6 @@
     <string name="reviews_textview">Отзывы</string>
     <string name="show_applications"><u>Просмотреть заявки</u></string>
     <string name="applications">Заявки</string>
+    <string name="leave_review">Оставить отзыв</string>
+    <string name="leave_review_hint">Оставьте отзыв...</string>
 </resources>

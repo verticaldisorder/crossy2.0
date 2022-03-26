@@ -96,7 +96,7 @@ public class AllApplicationsFragment extends Fragment {
                                 //обработка нажатия на заявку из списка
                                 if (!exchange.isCrossedByApplicant() && !exchange.isCrossedByAccepted()) {
                                     //заявка не отмечена законченной ни с одной из сторон, кнопка о завершении заявки
-                                    ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка не завершена, отметьте завершенной", exchange.getExchangeId());
+                                    ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка не завершена, отметьте завершенной", exchange);
                                     dialog.setDialogWithFinishApplicationButton();
                                     if (exchange.getApplicant().equals(user.getUid())) {
                                         isApplicant = true;
@@ -114,7 +114,7 @@ public class AllApplicationsFragment extends Fragment {
                                         Toast.makeText(getContext(), "Заявка не завершена другим пользователем", Toast.LENGTH_LONG).show();
                                     } else {
                                         isApplicant = false;
-                                        ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка не завершена, отметьте завершенной", exchange.getExchangeId());
+                                        ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка не завершена, отметьте завершенной", exchange);
                                         dialog.setDialogWithFinishApplicationButton();
                                         dialog.show(getParentFragmentManager(), "custom");
                                     }
@@ -125,7 +125,7 @@ public class AllApplicationsFragment extends Fragment {
                                     // если заявить пользователь на стороне, то никаких действий
                                     if (exchange.getApplicant().equals(user.getUid())) {
                                         isApplicant = true;
-                                        ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка не завершена, отметьте завершенной", exchange.getExchangeId());
+                                        ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка не завершена, отметьте завершенной", exchange);
                                         dialog.setDialogWithFinishApplicationButton();
                                         dialog.show(getParentFragmentManager(), "custom");
                                     } else {
@@ -140,7 +140,7 @@ public class AllApplicationsFragment extends Fragment {
                                     } else {
                                         isApplicant = false;
                                     }
-                                    ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка завершена, оставьте отзыв", exchange.getExchangeId());
+                                    ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка завершена, оставьте отзыв", exchange);
                                     dialog.setDialogWithReviewButton();
                                     dialog.show(getParentFragmentManager(), "custom");
                                 }

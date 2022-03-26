@@ -191,7 +191,6 @@ public class ProfileFragment extends Fragment {
         booksInLibrary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO переход в библиотеку
                 getParentFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container_profile_activity, LibraryFragment.class, null)

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/leave_review_add_review_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/leave_review"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:layout_marginTop="100dp"
+        android:textSize="60dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/leave_review_review_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:hint="@string/leave_review_hint"
+        android:textColorHint="@color/hints"
+        android:fontFamily="@font/regular"
+        android:textColorHighlight="@color/purple_button"
+        android:inputType="textMultiLine"
+        android:background="@drawable/edit_text_background"
+        android:theme="@style/editTextCustom"
+
+        app:layout_constraintTop_toBottomOf="@id/leave_review_add_review_textview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/leave_review_leave_review_button"
+        android:layout_width="330dp"
+        android:layout_height="68dp"
+        android:text="@string/add_book_button"
+        android:fontFamily="@font/bold"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/purple_button_enabled"
+        style="@style/Widget.AppCompat.Button"
+
+        app:layout_constraintTop_toBottomOf="@id/leave_review_review_edittext"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

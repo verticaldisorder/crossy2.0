@@ -42,4 +42,6 @@
     <string name="send">Отправить</string>
     <string name="message">сообщение</string>
     <string name="reviews_textview">Отзывы</string>
+    <string name="show_applications"><u>Просмотреть заявки</u></string>
+    <string name="applications">Заявки</string>
 </resources>

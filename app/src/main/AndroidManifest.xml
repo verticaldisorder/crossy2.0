@@ -23,4 +23,5 @@
         <activity android:name=".activities.ReviewActivity"></activity>
     </application>
 
+
 </manifest>

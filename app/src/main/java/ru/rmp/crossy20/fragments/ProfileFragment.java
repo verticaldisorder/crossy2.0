@@ -39,6 +39,7 @@ public class ProfileFragment extends Fragment {
     TextView nickname;
     TextView address;
     TextView addBookTextView;
+    TextView showApplicationsTextView;
     CheckBox handOnPersonally;
     CheckBox handOnPost;
     TextView booksInLibrary;
@@ -68,6 +69,7 @@ public class ProfileFragment extends Fragment {
         booksInLibrary = profileView.findViewById(R.id.profile_books_in_library_count_textview);
         booksCrossed = profileView.findViewById(R.id.profile_crossed_books_count_textview);
         booksReviews = profileView.findViewById(R.id.profile_reviews_count_textview);
+        showApplicationsTextView = profileView.findViewById(R.id.profile_show_applications_button);
 
         setDataInFields();
         setProfileData();
@@ -212,6 +214,17 @@ public class ProfileFragment extends Fragment {
                 getParentFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container_profile_activity, AddBookFragment.class, null)
+                        .addToBackStack("tag")
+                        .commit();
+            }
+        });
+
+        showApplicationsTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container_profile_activity, AllApplicationsFragment.newInstance(), null)
                         .addToBackStack("tag")
                         .commit();
             }

@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -45,6 +47,7 @@ public class ProfileFragment extends Fragment {
     TextView booksInLibrary;
     TextView booksCrossed;
     TextView booksReviews;
+    Button imageButton;
 
     public ProfileFragment() {
         super(R.layout.profile_fragment);
@@ -70,6 +73,7 @@ public class ProfileFragment extends Fragment {
         booksCrossed = profileView.findViewById(R.id.profile_crossed_books_count_textview);
         booksReviews = profileView.findViewById(R.id.profile_reviews_count_textview);
         showApplicationsTextView = profileView.findViewById(R.id.profile_show_applications_button);
+        imageButton = profileView.findViewById(R.id.profile_nickname_image_button);
 
         setDataInFields();
         setProfileData();
@@ -224,6 +228,18 @@ public class ProfileFragment extends Fragment {
                 getParentFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container_profile_activity, AllApplicationsFragment.newInstance(), null)
+                        .addToBackStack("tag")
+                        .commit();
+            }
+        });
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO go to settings
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container_profile_activity, SettingsFragment.newInstance(), null)
                         .addToBackStack("tag")
                         .commit();
             }

@@ -46,4 +46,7 @@
     <string name="applications">Заявки</string>
     <string name="leave_review">Оставить отзыв</string>
     <string name="leave_review_hint">Оставьте отзыв...</string>
+    <string name="ettings">Настройки</string>
+    <string name="settings">Настройки</string>
+    <string name="logout">Выйти из аккаунта</string>
 </resources>

@@ -29,6 +29,7 @@ public class FeedFragment extends Fragment {
 
     public FeedFragment() {
         super(R.layout.feed_fragment);
+
     }
 
     @Override
@@ -40,8 +41,7 @@ public class FeedFragment extends Fragment {
         title = view.findViewById(R.id.item_feed_title_textview);
         genre = view.findViewById(R.id.item_feed_genre_textview);
 
-        MathModelUtil mathModelUtil = new MathModelUtil();
-        books = mathModelUtil.getRecommendedBooksForCurrentUser();
+        books = MathModelUtil.returnBooks();
 
         RecyclerView recyclerView = view.findViewById(R.id.feed_recyclerview);
         FeedAdapter adapter = new FeedAdapter(getContext(), books);
@@ -49,6 +49,7 @@ public class FeedFragment extends Fragment {
     }
 
     public static FeedFragment newInstance() {
+
         FeedFragment fragment = new FeedFragment();
         return fragment;
     }
@@ -62,6 +63,7 @@ public class FeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.feed_fragment, container, false);
     }
 

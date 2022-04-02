@@ -74,7 +74,7 @@ public class LibraryFragment extends Fragment {
 
                                     System.out.println("NOW IN BOOKS ARE: " + doc.getData().toString());
 
-                                    Book book = new Book(doc.getData().get("author").toString(), doc.getData().get("title").toString(), doc.getData().get("genre_id").toString(), doc.getData().get("bookholder_id").toString(), false);
+                                    Book book = new Book(doc.getData().get("author").toString(), doc.getData().get("title").toString(), doc.getData().get("genre_id").toString(), doc.getData().get("bookholder_id").toString(), doc.getData().get("bookholder_nickname").toString(), false);
                                     books.add(book);
 
                                     System.out.println("ARE BOOKS IN SETDATA EMPTY: " + books.isEmpty());

@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import ru.rmp.crossy20.R;
 import ru.rmp.crossy20.activities.ReviewActivity;
+import ru.rmp.crossy20.utils.MathModelUtil;
 
 public class ProfileFragment extends Fragment {
     View profileView;
@@ -103,6 +105,10 @@ public class ProfileFragment extends Fragment {
                 address.setText(task.getResult().getString("address"));
                 handOnPersonally.setChecked(task.getResult().getBoolean("hand_over_personally"));
                 handOnPost.setChecked(task.getResult().getBoolean("hand_over_post"));
+
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(nickname.getText().toString())
+                        .build();
             }
         });
 
@@ -110,6 +116,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setProfileData() {
+        MathModelUtil.getRecommendedBooksForCurrentUser();
         CollectionReference colRef = db.collection("book");
         colRef.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

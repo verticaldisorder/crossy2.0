@@ -3,6 +3,7 @@ package ru.rmp.crossy20.utils;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -14,19 +15,20 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+import io.grpc.internal.JsonUtil;
 import ru.rmp.crossy20.models.Book;
 import ru.rmp.crossy20.models.User;
 
 public class MathModelUtil {
-    User user;
-    ArrayList<String> userGenres;
-    ArrayList<Book> books;
+    static User user = new User();
+    static ArrayList<String> userGenres;
+    static ArrayList<Book> books = new ArrayList<>();
 
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseUser mUser = mAuth.getCurrentUser();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference bookCollectionReference = db.collection("book");
-    CollectionReference bookholderCollectionReference = db.collection("bookholder");
+    static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    static FirebaseUser mUser = mAuth.getCurrentUser();
+    static FirebaseFirestore db = FirebaseFirestore.getInstance();
+    static CollectionReference bookCollectionReference = db.collection("book");
+    static CollectionReference bookholderCollectionReference = db.collection("bookholder");
 
     /** модель:
     1. получает пользователя, относительно которого расчитывается рекомендация и устанавливает его в поле user --сделано
@@ -46,7 +48,7 @@ public class MathModelUtil {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot doc : task.getResult()) {
-                                if (doc.getData().get("nickname").equals(user.getNickname())) {
+                                if (doc.getData().get("nickname").toString().equals(user.getNickname())) {
                                     user = new User(doc.getData().get("nickname").toString(), doc.getData().get("address").toString(), (Boolean)doc.getData().get("hand_over_personally"), (Boolean)doc.getData().get("hand_over_post"));
                                 }
                             }
@@ -66,14 +68,45 @@ public class MathModelUtil {
         }
     }
 
-    public ArrayList<Book> getRecommendedBooksForCurrentUser() {
+    public static void getRecommendedBooksForCurrentUser() {
+        System.out.println("get recommended started");
+
+        bookholderCollectionReference
+                .document(mUser.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                                    user = new User(task.getResult().get("nickname").toString(), task.getResult().get("address").toString(), (Boolean)task.getResult().get("hand_over_personally"), (Boolean)task.getResult().get("hand_over_post"));
+                        }
+                    }
+                });
+
+        setPreparatoryBooksArrayList();
+
+        checkBooksFlags();
+
+        if (!user.isHandOnPost()) {
+            System.out.println("SET BOOKS YAY");
+            setBooksWithRelevantAddress();
+        } else {
+            System.out.println("SET BOOKS 2 YAY");
+            setBooksWithRelevantGenre();
+        }
+
         if (books.isEmpty()) {
             setTestData();
         }
+
+
+    }
+
+    public static ArrayList<Book> returnBooks() {
         return books;
     }
 
-    private void setPreparatoryBooksArrayList() {
+    private static void setPreparatoryBooksArrayList() {
         bookCollectionReference
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -81,15 +114,19 @@ public class MathModelUtil {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot doc : task.getResult()) {
-                                if (!doc.getData().get("bookholder_id").equals(mUser.getUid())) {
+                                System.out.println("DOCS ARE: " + doc.getData().get("bookholder_id"));
+                                if (!doc.getData().get("bookholder_id").toString().equals(mUser.getUid())) {
+                                    System.out.println("IN SET PREPORATORY bookholder found");
                                     bookholderCollectionReference
-                                            .document(doc.getData().get("bookholder_id").toString())
+                                            .document("Tway8Gc6ZlPmliW7MdQMxnMZ0oj2")
                                             .get()
                                             .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<DocumentSnapshot> task2) {
-                                                    if (task2.isSuccessful() && (doc.getData().get("hand_over_personally") == task2.getResult().getData().get("hand_over_personally") || doc.getData().get("hand_over_post") == task2.getResult().getData().get("hand_over_post"))) {
-                                                            books.add(new Book(doc.getData().get("author").toString(), doc.getData().get("title").toString(), doc.getData().get("genre").toString(), task2.getResult().get("nickname").toString(), false));
+                                                    System.out.println("TASK2 result: " + task2.getResult().get("hand_over_personally"));
+                                                    if (task2.isSuccessful() && ((Boolean)doc.getData().get("hand_over_personally") == (Boolean)task2.getResult().get("hand_over_personally") || (Boolean)doc.getData().get("hand_over_post") == (Boolean)task2.getResult().get("hand_over_post"))) {
+//                                                        books.add(new Book(doc.getData().get("author").toString(), doc.getData().get("title").toString(), doc.getData().get("genre_id").toString(), "user", false));
+                                                        System.out.println("IN SET PREPORATORY: " + books.toString());
                                                     }
                                                 }
                                             });
@@ -102,7 +139,7 @@ public class MathModelUtil {
                 });
     }
 
-    private void checkBooksFlags() {
+    private static void checkBooksFlags() {
         for (Book b : books) {
             if (b.isCrossed()) {
                 books.remove(b);
@@ -110,21 +147,28 @@ public class MathModelUtil {
          }
     }
 
-    private void setBooksWithRelevantAddress() {
+    private static void setBooksWithRelevantAddress() {
+
         ArrayList<Book> recommendBooks = new ArrayList<>();
         ArrayList<Book> rejectedBooks = new ArrayList<>();
         for (Book b : books) {
+            System.out.println("сюда заходит");
             bookholderCollectionReference
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
+
                                 for (QueryDocumentSnapshot doc : task.getResult()) {
-                                    if(b.getBookholder().equals(doc.getData().get("nickname"))) {
+
+                                    if(b.getBookholderId().equals(doc.getData().get("nickname"))) {
+
                                         if (user.getAddress().equals(doc.getData().get("address"))) {
+                                            System.out.println("added rec book: " + b.toString());
                                             recommendBooks.add(b);
                                         } else {
+                                            System.out.println("added rej book: " + b.toString());
                                             rejectedBooks.add(b);
                                         }
                                     }
@@ -139,7 +183,7 @@ public class MathModelUtil {
         books.addAll(rejectedBooks);
     }
 
-    private void setBooksWithRelevantGenre() {
+    private static void setBooksWithRelevantGenre() {
         bookCollectionReference
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -174,16 +218,31 @@ public class MathModelUtil {
                 }
             }
 
-            books.clear();
             books.addAll(recommendedBooks);
             books.addAll(rejectedBooks);
         }
     }
 
-    private void setTestData() {
-        books.add(new Book("author", "title", "genre", "bookholder", false));
-        books.add(new Book("author2", "title2", "genre2", "bookholder2", false));
-        books.add(new Book("author3", "title3", "genre3", "bookholder3", false));
+    private static void setTestData() {
+//        books.add(new Book("Дж. Р. Р. Толкин", "Возвращение короля", "фэнтези", "alex", false));
+//        books.add(new Book("Терри Пратчетт", "Патриот", "Детектив", "somebookguy", false));
+//        books.add(new Book("Виктор Пелевин", "Бэтман Аполло", "фэнтези", "notanickname", false));
+
+        bookCollectionReference
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot doc : task.getResult()) {
+                                System.out.println("IS EMPTY " + doc.exists());
+                                if (!doc.getData().get("bookholder_id").toString().equals(mUser.getUid())) {
+                                    books.add(new Book(doc.getData().get("author").toString(), doc.getData().get("title").toString(), doc.getData().get("genre_id").toString(), doc.getData().get("bookholder_id").toString(), doc.getData().get("bookholder_nickname").toString(), false));
+                                }
+                            }
+                        }
+                    }
+                });
     }
 
 }

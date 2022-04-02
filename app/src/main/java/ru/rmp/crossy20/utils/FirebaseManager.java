@@ -34,7 +34,6 @@ public class FirebaseManager {
     static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     static FirebaseUser user = mAuth.getCurrentUser();
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
-    public static User resultUser = new User();
 
     static CollectionReference bookholderReference = db.collection("bookholder");
 
@@ -42,6 +41,7 @@ public class FirebaseManager {
         Map<String, Object> bookMap = new HashMap<>();
         bookMap.put("author", author);
         bookMap.put("bookholder_id", user.getUid());
+        bookMap.put("bookholder_nickname", user.getDisplayName());
         bookMap.put("genre_id", genre);
         bookMap.put("is_crossed", false);
         bookMap.put("title", title);

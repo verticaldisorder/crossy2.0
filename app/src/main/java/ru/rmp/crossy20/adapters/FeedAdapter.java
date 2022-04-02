@@ -53,7 +53,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FeedAdapter.ViewHolder holder, int position) {
         Book book = books.get(position);
-        holder.usernameView.setText(book.getBookholder()); //возможно вернется ключ в бд, а не ник
+        holder.usernameView.setText(book.getBookholderNickname()); //возможно вернется ключ в бд, а не ник
         holder.authorView.setText(book.getAuthor());
         holder.titleView.setText(book.getTitle());
         holder.genreView.setText(book.getGenre());

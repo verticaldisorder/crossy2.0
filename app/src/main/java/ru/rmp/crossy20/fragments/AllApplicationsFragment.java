@@ -36,6 +36,7 @@ public class AllApplicationsFragment extends Fragment {
     CollectionReference colRef = db.collection("exchange");
 
     static boolean isApplicant = false;
+    static boolean isClicked = false;
 
     RecyclerView recyclerView;
     ArrayList<Exchange> exchanges = new ArrayList<>();
@@ -104,6 +105,9 @@ public class AllApplicationsFragment extends Fragment {
                                         isApplicant = false;
                                     }
                                     dialog.show(getParentFragmentManager(), "custom");
+                                    if(isClicked) {
+                                        exchange.setCrossedByAccepted(true);
+                                    }
                                 }
                                 if (exchange.isCrossedByApplicant() && !exchange.isCrossedByAccepted()) {
                                     //заявка отмечена законченной заявителем и не отмечена принимающим,
@@ -117,6 +121,9 @@ public class AllApplicationsFragment extends Fragment {
                                         ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка не завершена, отметьте завершенной", exchange);
                                         dialog.setDialogWithFinishApplicationButton();
                                         dialog.show(getParentFragmentManager(), "custom");
+                                        if(isClicked) {
+                                            exchange.setCrossedByAccepted(true);
+                                        }
                                     }
                                 }
                                 if (!exchange.isCrossedByApplicant() && exchange.isCrossedByAccepted()) {
@@ -128,6 +135,9 @@ public class AllApplicationsFragment extends Fragment {
                                         ApplicationDialogFragment dialog = new ApplicationDialogFragment("Заявка не завершена, отметьте завершенной", exchange);
                                         dialog.setDialogWithFinishApplicationButton();
                                         dialog.show(getParentFragmentManager(), "custom");
+                                        if(isClicked) {
+                                            exchange.setCrossedByAccepted(true);
+                                        }
                                     } else {
                                         isApplicant = false;
                                         Toast.makeText(getContext(), "Заявка не завершена другим пользователем", Toast.LENGTH_LONG).show();
@@ -144,6 +154,7 @@ public class AllApplicationsFragment extends Fragment {
                                     dialog.setDialogWithReviewButton();
                                     dialog.show(getParentFragmentManager(), "custom");
                                 }
+
                             }
                         };
 
@@ -155,5 +166,10 @@ public class AllApplicationsFragment extends Fragment {
 
     public static boolean isCurrentUserAnApplicant() {
         return isApplicant;
+    }
+
+    public static boolean isPositiveButtonClicked() {
+        isClicked = true;
+        return isClicked;
     }
 }

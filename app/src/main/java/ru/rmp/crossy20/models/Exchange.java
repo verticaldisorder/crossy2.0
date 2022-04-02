@@ -17,6 +17,8 @@ public class Exchange {
         this.isCrossedByApplicant = false;
     }
 
+    public Exchange() {}
+
     public Exchange(String exchangeId, String accepted, String applicant, String book, boolean isCrossedByAccepted, boolean isCrossedByApplicant) {
         this.exchangeId = exchangeId;
         this.accepted = accepted;

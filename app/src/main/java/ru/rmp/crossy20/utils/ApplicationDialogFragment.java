@@ -59,6 +59,7 @@ public class ApplicationDialogFragment extends DialogFragment {
                     .setPositiveButton("Завершить", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            AllApplicationsFragment.isPositiveButtonClicked();
                             Map<String, Object> object = new HashMap<>();
                             if(AllApplicationsFragment.isCurrentUserAnApplicant()) {
                                 object.put("is_crossed_by_applicant", true);
@@ -73,9 +74,9 @@ public class ApplicationDialogFragment extends DialogFragment {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             System.out.println("document re-wrote successfully");
+
                                         }
                                     });
-
                         }
                     })
                     .setNegativeButton("Отмена", null);
@@ -90,7 +91,7 @@ public class ApplicationDialogFragment extends DialogFragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //переход на экран оставления отзывов
-
+                            AllApplicationsFragment.isPositiveButtonClicked();
                             if(AllApplicationsFragment.isCurrentUserAnApplicant()) {
                                 reviewedId = exchangeDocument.getAccepted();
 
@@ -106,6 +107,11 @@ public class ApplicationDialogFragment extends DialogFragment {
                         }
                     })
                     .setNegativeButton("Отмена", null);
+
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container_profile_activity, AllApplicationsFragment.newInstance())
+                    .commit();
         }
 
 

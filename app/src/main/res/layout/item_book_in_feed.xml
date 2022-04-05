@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:background="@color/background"
     android:orientation="vertical"
-    android:layout_margin="20dp"
     android:clickable="true">
 
     <TextView
@@ -14,9 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:text="nick"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textColor="@color/black"
         android:fontFamily="@font/bold"
-        android:textSize="20dp"
+        android:textSize="20sp"
         />
 
     <TextView
@@ -24,60 +25,73 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:text="публикует"
-        android:textColor="@color/black"
+        android:textColor="@color/hints"
         android:fontFamily="@font/regular"
-        android:textSize="20dp"
+        android:textSize="15sp"
         />
 
 
     <TextView
         android:id="@+id/item_feed_author_textview"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:fontFamily="@font/bold"
-        android:textSize="30dp"
-        />
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="text"/>
 
     <TextView
         android:id="@+id/item_feed_title_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bold"
-        android:textSize="40dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:clickable="true"
+        android:fontFamily="@font/bold"
         android:onClick="onClick"
-        />
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:text="text"/>
 
     <TextView
         android:id="@+id/item_feed_genre_textview"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textColor="@color/hints"
         android:fontFamily="@font/regular"
-        android:textSize="20dp"
+        android:textSize="15sp"
+        android:text="text"
         />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/item_feed_set_application_book_button"
-        android:layout_width="220dp"
-        android:layout_height="68dp"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
         android:text="Отправить заявку"
-        android:fontFamily="@font/bold"
-        android:textSize="20dp"
+        android:fontFamily="@font/regular"
+        android:textSize="15sp"
         android:textColor="@color/black"
         android:textAllCaps="false"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/purple_button_enabled"
         style="@style/Widget.AppCompat.Button" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/gray_mercury"
+        />
 </LinearLayout>

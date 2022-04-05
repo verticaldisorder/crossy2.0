@@ -167,7 +167,7 @@
         android:layout_width="330dp"
         android:layout_height="68dp"
         android:text="@string/sign_in"
-        android:fontFamily="@font/bold"
+        android:fontFamily="@font/regular"
         android:textSize="30dp"
         android:textColor="@color/black"
         android:textAllCaps="false"

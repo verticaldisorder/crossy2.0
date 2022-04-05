@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="16dp"
-              android:layout_marginStart="16dp"
-              android:orientation="vertical"
-                android:background="@color/background">
-
-    <ImageView
-        android:id="@+id/photoImageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true" />
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/messageTextView"
@@ -20,20 +13,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:fontFamily="@font/regular"
-        android:textSize="25dp"
+        android:fontFamily="@font/bold"
+        android:textSize="25sp"
         tools:text="Message" />
 
     <TextView
         android:id="@+id/nameTextView"
         android:textColor="@color/black"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:fontFamily="@font/bold"
-        android:textSize="15dp"
+        android:fontFamily="@font/regular"
+        android:textSize="15sp"
         tools:text="Name" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/gray_mercury"
+        />
 
 </LinearLayout>

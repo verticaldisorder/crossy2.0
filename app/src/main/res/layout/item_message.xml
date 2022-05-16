@@ -17,6 +17,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:elevation="1dp">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+
+            android:src="@drawable/ic_profile_default" />
+
+    <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:paddingLeft="16dp"
+            android:paddingLeft="8dp"
             android:paddingRight="16dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:fontFamily="@font/bold"
@@ -42,7 +60,7 @@
         <TextView
             android:id="@+id/nameTextView"
             android:textColor="@color/black"
-            android:paddingLeft="16dp"
+            android:paddingLeft="8dp"
             android:paddingRight="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,6 +71,10 @@
             tools:text="Name" />
 
     </LinearLayout>
+
+        </LinearLayout>
+
+
 
 </com.google.android.material.card.MaterialCardView>
 

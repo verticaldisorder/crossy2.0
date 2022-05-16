@@ -224,9 +224,7 @@ public class MathModelUtil {
     }
 
     private static void setTestData() {
-//        books.add(new Book("Дж. Р. Р. Толкин", "Возвращение короля", "фэнтези", "alex", false));
-//        books.add(new Book("Терри Пратчетт", "Патриот", "Детектив", "somebookguy", false));
-//        books.add(new Book("Виктор Пелевин", "Бэтман Аполло", "фэнтези", "notanickname", false));
+
 
         bookCollectionReference
                 .get()

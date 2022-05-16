@@ -1,10 +1,13 @@
 package ru.rmp.crossy20.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +23,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -32,7 +38,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference bookholderRef = db.collection("bookholder");
     CollectionReference bookRef = db.collection("book");
-
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference();
 
     private final LayoutInflater inflater;
     private final List<Book> books;
@@ -53,10 +60,23 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FeedAdapter.ViewHolder holder, int position) {
         Book book = books.get(position);
-        holder.usernameView.setText(book.getBookholderNickname()); //возможно вернется ключ в бд, а не ник
+        holder.usernameView.setText(book.getBookholderNickname());
         holder.authorView.setText(book.getAuthor());
         holder.titleView.setText(book.getTitle());
         holder.genreView.setText(book.getGenre());
+
+        StorageReference picRef = storageReference.child(book.getBookholderNickname());
+
+        if(picRef.toString() != null) {
+            final long ONE_MEGABYTE = 1024 * 1024;
+            picRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    holder.profileImage.setImageBitmap(bmp);
+                }
+            });
+        }
 
         initButton(holder.sendIntentToBook, getUidByNickname(holder.usernameView.getText().toString()), getBookByTitle(holder.titleView.getText().toString()));
     }
@@ -67,6 +87,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        final ImageView profileImage;
         final TextView usernameView;
         final TextView authorView;
         final TextView titleView;
@@ -79,7 +100,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             titleView = itemView.findViewById(R.id.item_feed_title_textview);
             genreView = itemView.findViewById(R.id.item_feed_genre_textview);
             sendIntentToBook = itemView.findViewById(R.id.item_feed_set_application_book_button);
-
+            profileImage = itemView.findViewById(R.id.profile_image);
 
         }
     }

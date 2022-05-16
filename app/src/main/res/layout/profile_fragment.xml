@@ -18,6 +18,38 @@
         android:background="@color/yellow_button"
         tools:ignore="MissingConstraints" />
 
+    <LinearLayout
+        android:id="@+id/image_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        >
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:foregroundGravity="center_horizontal"
+
+
+            android:src="@drawable/ic_profile_default"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+
+
     <TextView
         android:id="@+id/profile_nickname_textview"
         android:layout_width="match_parent"
@@ -29,12 +61,12 @@
         android:paddingRight="8dp"
         android:text="text"
         android:gravity="center"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="0dp"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_linear"
         />
 
     <TextView
@@ -168,7 +200,7 @@
         android:id="@+id/profile_hand_on_personally_uneditable_checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="45dp"
         android:text="@string/hand_over_personally_checkbox"
         android:textColor="@color/black"
@@ -202,7 +234,7 @@
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
 
         android:columnCount="2"
         android:layout_gravity="center"

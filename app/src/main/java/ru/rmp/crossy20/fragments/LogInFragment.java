@@ -17,6 +17,10 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,10 +37,10 @@ import ru.rmp.crossy20.activities.ProfileActivity;
 public class LogInFragment extends Fragment {
     private final String TAG = "LOG_TAG";
 
-    AppCompatEditText emailEditText;
-    AppCompatEditText passwordEditText;
+    TextInputEditText emailEditText;
+    TextInputEditText passwordEditText;
     TextView signUp;
-    Button signInButton;
+    MaterialButton signInButton;
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();

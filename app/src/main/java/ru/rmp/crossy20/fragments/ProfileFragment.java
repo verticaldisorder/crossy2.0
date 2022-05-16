@@ -1,6 +1,7 @@
 package ru.rmp.crossy20.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +14,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -40,10 +44,12 @@ public class ProfileFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef = db.collection("bookholder").document(user.getUid());
 
+    Toolbar toolbar;
+    CircularProgressIndicator progressBar;
     TextView nickname;
     TextView address;
-    TextView addBookTextView;
-    TextView showApplicationsTextView;
+    Button addBookTextView;
+    Button showApplicationsTextView;
     CheckBox handOnPersonally;
     CheckBox handOnPost;
     TextView booksInLibrary;
@@ -64,6 +70,10 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        toolbar = profileView.findViewById(R.id.toolbar);
+        progressBar = profileView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
         nickname = profileView.findViewById(R.id.profile_nickname_textview);
         address = profileView.findViewById(R.id.profile_address_textview);
         addBookTextView = profileView.findViewById(R.id.profile_add_book_in_library_button);
@@ -77,9 +87,11 @@ public class ProfileFragment extends Fragment {
         showApplicationsTextView = profileView.findViewById(R.id.profile_show_applications_button);
         imageButton = profileView.findViewById(R.id.profile_nickname_image_button);
 
+        initToolbar();
         setDataInFields();
         setProfileData();
         initClickableFields();
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -204,7 +216,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 getParentFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container_profile_activity, LibraryFragment.class, null)
+                        .replace(R.id.fragment_container_profile_activity, LibraryFragment.newInstance(), null)
                         .addToBackStack("tag")
                         .commit();
             }
@@ -251,5 +263,11 @@ public class ProfileFragment extends Fragment {
                         .commit();
             }
         });
+    }
+
+    private void initToolbar() {
+        toolbar.setTitle("Профиль");
+        toolbar.setTitleTextColor(Color.BLACK);
+        getActivity().setActionBar(toolbar);
     }
 }

@@ -9,9 +9,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.security.SecurityPermission;
+import java.util.Arrays;
+import java.util.List;
 
 import ru.rmp.crossy20.R;
 import ru.rmp.crossy20.utils.FirebaseManager;
@@ -19,7 +26,7 @@ import ru.rmp.crossy20.utils.FirebaseManager;
 public class AddBookFragment extends Fragment {
     EditText title;
     EditText author;
-    EditText genre;
+    Spinner genre;
     Button addButton;
 
     public AddBookFragment() {
@@ -34,6 +41,7 @@ public class AddBookFragment extends Fragment {
         genre = view.findViewById(R.id.add_book_genre_edittext);
         addButton = view.findViewById(R.id.add_book_add_book_button);
 
+        initGenresAutoComplete();
         initButton();
 
     }
@@ -60,7 +68,7 @@ public class AddBookFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (FirebaseManager.addBook(author.getText().toString(), title.getText().toString(), genre.getText().toString())) {
+                if (FirebaseManager.addBook(author.getText().toString(), title.getText().toString(), genre.getSelectedItem().toString())) {
                     getParentFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container_profile_activity, ProfileFragment.newInstance(), null)
@@ -71,5 +79,12 @@ public class AddBookFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void initGenresAutoComplete() {
+        List<String> genres = Arrays.asList(getResources().getStringArray(R.array.genres));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.genre_row, genres);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genre.setAdapter(adapter);
     }
 }

@@ -1,5 +1,6 @@
 package ru.rmp.crossy20.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ import ru.rmp.crossy20.utils.MathModelUtil;
 public class FeedFragment extends Fragment {
     ArrayList<Book> books = new ArrayList<Book>();
 
+    Toolbar toolbar;
     TextView nickname;
     TextView author;
     TextView title;
@@ -40,6 +43,8 @@ public class FeedFragment extends Fragment {
         author = view.findViewById(R.id.item_feed_author_textview);
         title = view.findViewById(R.id.item_feed_title_textview);
         genre = view.findViewById(R.id.item_feed_genre_textview);
+        toolbar = view.findViewById(R.id.toolbar);
+        initToolbar();
 
         books = MathModelUtil.returnBooks();
 
@@ -66,6 +71,13 @@ public class FeedFragment extends Fragment {
 
         return inflater.inflate(R.layout.feed_fragment, container, false);
     }
+
+    private void initToolbar() {
+        toolbar.setTitleTextColor(Color.BLACK);
+        toolbar.setTitle("Лента");
+        getActivity().setActionBar(toolbar);
+    }
+
 
 
 }

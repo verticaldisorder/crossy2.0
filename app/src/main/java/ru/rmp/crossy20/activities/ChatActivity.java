@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -52,6 +53,5 @@ public class ChatActivity extends AppCompatActivity {
                 .add(R.id.fragment_container_chat_activity, ChatFragment.newInstance(), null)
                 .commit();
     }
-
 
 }

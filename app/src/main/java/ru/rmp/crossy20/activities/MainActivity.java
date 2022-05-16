@@ -11,6 +11,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import ru.rmp.crossy20.fragments.LogInFragment;
 import ru.rmp.crossy20.R;
+import ru.rmp.crossy20.fragments.SignUpFragment;
 import ru.rmp.crossy20.models.BookRequest;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,18 +23,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(mUser != null) {
-            new BookRequest().start();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_container_main_activity, LogInFragment.newInstance("d", "d"), null)
+                .commit();
 
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-            startActivity(intent);
-
-        } else {
-            //открыть окно авторизации
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragment_container_main_activity, LogInFragment.class, null)
-                    .commit();
-        }
+//        if(mUser != null) {
+//            new BookRequest().start();
+//
+//            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+//            startActivity(intent);
+//
+//        } else {
+//            //открыть окно авторизации
+//            getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .add(R.id.fragment_container_main_activity, LogInFragment.class, null)
+//                    .commit();
+//        }
     }
 }

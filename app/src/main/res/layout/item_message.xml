@@ -1,43 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/card_message"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/background">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
 
-    <TextView
-        android:id="@+id/messageTextView"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:fontFamily="@font/bold"
-        android:textSize="25sp"
-        tools:text="Message" />
+    android:clickable="true"
+    android:focusable="true"
+    android:checkable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:backgroundTint="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/nameTextView"
-        android:textColor="@color/black"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:fontFamily="@font/regular"
-        android:textSize="15sp"
-        tools:text="Name" />
-
-    <View
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:layout_marginTop="6dp"
-        android:background="@color/gray_mercury"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:elevation="1dp"
+        android:outlineProvider="bounds"
+        android:stateListAnimator="@null"
+        android:background="@color/background">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/messageTextView"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:fontFamily="@font/bold"
+            android:textSize="25sp"
+            tools:text="Message" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:textColor="@color/black"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:fontFamily="@font/regular"
+            android:textSize="15sp"
+            tools:text="Name" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

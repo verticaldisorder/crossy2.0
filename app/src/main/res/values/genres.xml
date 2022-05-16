@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="genres">
+        <item>Новелла</item>
+        <item>Ода</item>
+        <item>Опус</item>
+        <item>Очерк</item>
+        <item>Поэма</item>
+        <item>Пьеса</item>
+        <item>Роман</item>
+        <item>Скетч</item>
+        <item>Эпопея</item>
+        <item>Эпос</item>
+        <item>Эссе</item>
+        <item>Комедия</item>
+        <item>Фарс</item>
+        <item>Водевиль</item>
+        <item>Интермедия</item>
+        <item>Скетч</item>
+        <item>Пародия</item>
+        <item>Комедия положений</item>
+        <item>Комедия харакетров</item>
+        <item>Трагедия</item>
+        <item>Драма</item>
+        <item>Ужасы</item>
+        <item>Басня</item>
+        <item>Аполог</item>
+        <item>Баллада</item>
+        <item>Миф</item>
+        <item>Новелла</item>
+        <item>Повесть</item>
+        <item>Рассказ</item>
+        <item>Роман-эпопея</item>
+        <item>Боевик</item>
+        <item>Детектив</item>
+        <item>Исторический роман</item>
+        <item>Любовный роман</item>
+        <item>Мистика</item>
+        <item>Приключения</item>
+        <item>Триллер</item>
+        <item>Научная фантастика</item>
+        <item>Фэнтези</item>
+    </string-array>
+</resources>

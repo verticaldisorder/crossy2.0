@@ -7,29 +7,24 @@
     android:background="@color/background"
     tools:context=".fragments.FeedFragment">
 
-    <TextView
-        android:id="@+id/feed_feed_textview"
+    <Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bold"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="Лента"
-
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        android:layout_height="56dp"
+        app:titleTextColor="@color/black"
+        app:titleMarginStart="32dp"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:backgroundTint="@null"
+        android:background="@color/yellow_button"
+        tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintTop_toBottomOf="@id/feed_feed_textview"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
         android:layout_marginTop="16dp"
+        android:paddingBottom="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/feed_recyclerview"

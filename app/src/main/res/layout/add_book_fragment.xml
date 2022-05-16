@@ -16,7 +16,7 @@
         android:fontFamily="@font/bold"
         android:gravity="center"
         android:layout_marginTop="100dp"
-        android:textSize="30sp"
+        android:textSize="48sp"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -24,88 +24,101 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/add_book_title_edittext"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_book_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/title"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:gravity="left"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:hint="@string/title"
+        android:layout_marginTop="30dp"
         android:textColorHint="@color/hints"
+        app:hintTextColor="@color/purple_button"
         android:fontFamily="@font/regular"
         android:textColorHighlight="@color/purple_button"
-        android:inputType="textEmailAddress"
-        android:background="@drawable/edit_text_background"
-        android:theme="@style/editTextCustom"
+        app:boxStrokeColor="@color/purple_button"
 
         app:layout_constraintTop_toBottomOf="@id/add_book_add_book_textview"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/add_book_author_edittext"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_book_title_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_book_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/author"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:gravity="left"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:hint="@string/author"
-        android:textSize="20sp"
+        android:layout_marginTop="30dp"
         android:textColorHint="@color/hints"
+        app:hintTextColor="@color/purple_button"
         android:fontFamily="@font/regular"
         android:textColorHighlight="@color/purple_button"
-        android:inputType="textEmailAddress"
-        android:background="@drawable/edit_text_background"
-        android:theme="@style/editTextCustom"
+        app:boxStrokeColor="@color/purple_button"
 
-        app:layout_constraintTop_toBottomOf="@id/add_book_title_edittext"
+        app:layout_constraintTop_toBottomOf="@id/add_book_title"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent">
 
-    <androidx.appcompat.widget.AppCompatEditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_book_author_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
         android:id="@+id/add_book_genre_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:hint="@string/genre"
-        android:textSize="20sp"
-        android:textColorHint="@color/hints"
-        android:fontFamily="@font/regular"
-        android:textColorHighlight="@color/purple_button"
-        android:inputType="textEmailAddress"
-        android:background="@drawable/edit_text_background"
-        android:theme="@style/editTextCustom"
-
-        app:layout_constraintTop_toBottomOf="@id/add_book_author_edittext"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/black"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        app:layout_constraintTop_toBottomOf="@id/add_book_author"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent">
 
-    <androidx.appcompat.widget.AppCompatButton
+    </Spinner>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/add_book_add_book_button"
-        android:layout_width="200dp"
-        android:layout_height="36dp"
+        android:layout_width="140dp"
+        android:layout_height="48dp"
         android:text="@string/add_book_button"
-        android:fontFamily="@font/regular"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:textAllCaps="false"
+        android:fontFamily="@font/bold"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/purple_button_enabled"
-        style="@style/Widget.AppCompat.Button"
+        style="@style/Widget.Material3.Button"
+        app:backgroundTint="@null"
+        android:shadowColor="@color/black"
+
+        android:elevation="10dp"
+        android:outlineProvider="bounds"
+        android:stateListAnimator="@null"
 
         app:layout_constraintTop_toBottomOf="@id/add_book_genre_edittext"
         app:layout_constraintLeft_toLeftOf="parent"

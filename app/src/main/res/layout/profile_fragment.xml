@@ -7,19 +7,16 @@
     android:background="@color/background"
     tools:context=".fragments.ProfileFragment">
 
-    <Button
-        android:id="@+id/profile_nickname_image_button"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:foreground="@drawable/ic_setings"
-        android:background="@color/background"
-        android:foregroundTint="@color/black"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:titleTextColor="@color/black"
+        app:titleMarginStart="32dp"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:backgroundTint="@null"
+        android:background="@color/yellow_button"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/profile_nickname_textview"
@@ -27,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:fontFamily="@font/bold"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:text="text"
@@ -37,7 +34,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/profile_nickname_image_button"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <TextView
@@ -58,40 +55,113 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
-
-    <TextView
-        android:id="@+id/profile_add_book_in_library_button"
+    <LinearLayout
+        android:id="@+id/profile_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:clickable="true"
-        android:fontFamily="@font/regular"
-        android:gravity="center"
-        android:text="@string/add_book"
-        android:textColor="@color/black"
-        android:textSize="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:paddingTop="24dp"
 
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/profile_address_textview"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_address_textview" />
+        app:layout_constraintRight_toRightOf="parent">
 
-    <TextView
-        android:id="@+id/profile_show_applications_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/regular"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:text="@string/show_applications"
-        android:clickable="true"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/profile_nickname_image_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            app:icon="@drawable/ic_settings"
+            app:iconGravity="textStart"
+            app:iconTint="@color/yellow_button"
+            app:iconPadding="0dp"
+            app:iconSize="40dp"
 
-        app:layout_constraintTop_toBottomOf="@id/profile_add_book_in_library_button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/profile_add_book_in_library_button"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="textStart"
+            app:iconTint="@color/black"
+            app:iconSize="45dp"
+            app:iconPadding="0dp"
+            android:background="@drawable/yellow_round_button"
+            style="@style/Widget.Material3.Button"
+            app:backgroundTint="@null"
+            android:shadowColor="@color/black"
+
+            android:elevation="15dp"
+            android:outlineProvider="paddedBounds"
+            android:stateListAnimator="@null"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/profile_show_applications_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_applications"
+            app:iconGravity="textStart"
+            app:iconTint="@color/yellow_button"
+            app:iconPadding="0dp"
+            app:iconSize="40dp"
+
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            />
+    </LinearLayout>
+
+<!--    <TextView-->
+<!--        android:id="@+id/profile_add_book_in_library_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:clickable="true"-->
+<!--        android:fontFamily="@font/regular"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/add_book"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20dp"-->
+
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/profile_address_textview" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/profile_show_applications_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:fontFamily="@font/regular"-->
+<!--        android:textSize="20dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/show_applications"-->
+<!--        android:clickable="true"-->
+
+<!--        app:layout_constraintTop_toBottomOf="@id/profile_add_book_in_library_button"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        />-->
 
 
     <androidx.appcompat.widget.AppCompatCheckBox
@@ -107,7 +177,7 @@
         android:editable="false"
         style="@style/checkboxCustom"
 
-        app:layout_constraintTop_toBottomOf="@id/profile_show_applications_button"
+        app:layout_constraintTop_toBottomOf="@id/profile_linear_layout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:ignore="Deprecated" />
@@ -116,7 +186,6 @@
         android:id="@+id/profile_hand_on_post_uneditable_checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="45dp"
         android:text="@string/hand_on_post_checkbox"
         android:textColor="@color/black"
@@ -129,7 +198,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:ignore="Deprecated" />
-
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -148,7 +216,7 @@
             android:id="@+id/profile_books_in_library_count_textview"
             android:textColor="@color/black"
             android:fontFamily="@font/bold"
-            android:textSize="30sp"
+            android:textSize="40sp"
             android:gravity="center"
             android:layout_height="72dp"
             android:layout_width="72dp"
@@ -159,7 +227,7 @@
             android:id="@+id/profile_crossed_books_count_textview"
             android:textColor="@color/black"
             android:fontFamily="@font/bold"
-            android:textSize="30sp"
+            android:textSize="40sp"
             android:text="0"
             android:gravity="center"
             android:layout_height="72dp"
@@ -169,7 +237,7 @@
             android:id="@+id/profile_reviews_count_textview"
             android:textColor="@color/black"
             android:fontFamily="@font/bold"
-            android:textSize="30sp"
+            android:textSize="40sp"
             android:text="0"
             android:gravity="center"
             android:layout_height="72dp"
@@ -178,7 +246,7 @@
 
         <TextView
             android:layout_row="0"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="8dp"
             android:text="@string/books_in_library"
             android:textColor="@color/black"
             android:fontFamily="@font/regular"
@@ -190,7 +258,7 @@
 
         <TextView
             android:layout_row="1"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="8dp"
             android:text="@string/crossed_books"
             android:textColor="@color/black"
             android:fontFamily="@font/regular"
@@ -202,7 +270,7 @@
 
         <TextView
             android:layout_row="2"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="8dp"
             android:text="@string/reviews"
             android:textColor="@color/black"
             android:fontFamily="@font/regular"
@@ -213,5 +281,17 @@
             android:layout_width="wrap_content" />
 
     </GridLayout>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:indeterminate="true"
+        app:indicatorColor="@color/purple_button"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

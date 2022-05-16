@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background">
 
-    <TextView
-        android:id="@+id/settings_fragment_settings_textview"
+    <Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bold"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="@string/settings"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        android:layout_height="56dp"
+        app:titleTextColor="@color/black"
+        app:titleMarginStart="32dp"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:backgroundTint="@null"
+        android:background="@color/yellow_button"
+        tools:ignore="MissingConstraints" />
 
     <GridLayout
         android:id="@+id/grid"
@@ -32,7 +27,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settings_fragment_settings_textview">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <TextView
             android:layout_width="wrap_content"

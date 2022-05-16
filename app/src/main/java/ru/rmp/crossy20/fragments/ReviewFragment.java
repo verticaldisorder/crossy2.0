@@ -1,9 +1,11 @@
 package ru.rmp.crossy20.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +31,7 @@ import ru.rmp.crossy20.adapters.ReviewAdapter;
 import ru.rmp.crossy20.models.Review;
 
 public class ReviewFragment extends Fragment {
+    Toolbar toolbar;
     View reviewsView;
     RecyclerView recyclerView;
     ArrayList<Review> reviews = new ArrayList<>();
@@ -58,6 +61,9 @@ public class ReviewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        toolbar = view.findViewById(R.id.toolbar);
+        initToolbar();
 
         setDataInReviews();
         System.out.println("reviews after setData(): " + reviews);
@@ -90,5 +96,11 @@ public class ReviewFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    private void initToolbar() {
+        toolbar.setTitle("Отзывы");
+        toolbar.setTitleTextColor(Color.BLACK);
+        getActivity().setActionBar(toolbar);
     }
 }

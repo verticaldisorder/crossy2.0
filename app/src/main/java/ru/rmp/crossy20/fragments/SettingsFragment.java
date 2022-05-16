@@ -1,11 +1,13 @@
 package ru.rmp.crossy20.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +20,7 @@ import ru.rmp.crossy20.R;
 
 public class SettingsFragment extends Fragment {
     View settingsView;
+    Toolbar toolbar;
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
@@ -38,6 +41,8 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         logoutButton = settingsView.findViewById(R.id.settings_fragment_logout_button);
         notificationSwitch = settingsView.findViewById(R.id.settings_fragment_notifications_switch);
+        toolbar = view.findViewById(R.id.toolbar);
+        initToolbar();
 
         initButton();
     }
@@ -62,6 +67,12 @@ public class SettingsFragment extends Fragment {
                 getActivity().finish();
             }
         });
+    }
+
+    private void initToolbar() {
+        toolbar.setTitle("Настройки");
+        toolbar.setTitleTextColor(Color.BLACK);
+        getActivity().setActionBar(toolbar);
     }
 }
 

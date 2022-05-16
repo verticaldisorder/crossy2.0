@@ -1,57 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/card_library"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background"
-    android:orientation="vertical">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
 
-    <TextView
-        android:id="@+id/item_library_author_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:fontFamily="@font/bold"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:text="text"/>
+    android:clickable="true"
+    android:focusable="true"
+    android:checkable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:backgroundTint="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/item_library_title_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bold"
-        android:textSize="30sp"
-        android:text="text"
-        />
-
-    <TextView
-        android:id="@+id/item_library_genre_textview"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textColor="@color/hints"
-        android:fontFamily="@font/regular"
-        android:textSize="15sp"
-        android:text="text"
-        />
-
-    <View
+    <LinearLayout
+        android:background="@color/background"
+        android:elevation="10dp"
+        android:outlineProvider="bounds"
+        android:stateListAnimator="@null"
         android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:layout_marginTop="6dp"
-        android:background="@color/gray_mercury"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/item_library_author_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:fontFamily="@font/bold"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:text="text"/>
+
+        <TextView
+            android:id="@+id/item_library_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bold"
+            android:textSize="20sp"
+            android:text="text"
+            />
+
+        <TextView
+            android:id="@+id/item_library_genre_textview"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/hints"
+            android:fontFamily="@font/regular"
+            android:textSize="15sp"
+            android:text="text"
+            android:layout_marginBottom="8dp"
+            />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

@@ -1,6 +1,7 @@
 package ru.rmp.crossy20.fragments;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,9 +18,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -34,11 +37,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.rmp.crossy20.R;
+import ru.rmp.crossy20.activities.ChatActivity;
+import ru.rmp.crossy20.activities.ProfileActivity;
 import ru.rmp.crossy20.adapters.MessageAdapter;
 import ru.rmp.crossy20.models.Message;
 
 public class ChatFragment extends Fragment {
     View chatView;
+    Toolbar toolbar;
 
     private static final String TAG = "MainActivity";
 
@@ -53,7 +59,7 @@ public class ChatFragment extends Fragment {
 
     private ListView mMessageListView;
     private MessageAdapter mMessageAdapter;
-    private ProgressBar mProgressBar;
+    private CircularProgressIndicator mProgressBar;
     private EditText mMessageEditText;
     private Button mSendButton;
 
@@ -81,9 +87,10 @@ public class ChatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
+        toolbar = view.findViewById(R.id.toolbar);
+        initToolbar();
         getUsername();
         System.out.println("USERNAME IS: " + mUsername);
 
@@ -232,4 +239,11 @@ public class ChatFragment extends Fragment {
                 });
 
     }
+
+    private void initToolbar() {
+        toolbar.setTitle("Чат");
+        toolbar.setTitleTextColor(Color.BLACK);
+        getActivity().setActionBar(toolbar);
+    }
+
 }

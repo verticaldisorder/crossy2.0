@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView android:id="@+id/genre_id"
+    android:background="@color/background"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColorHint="@color/hints"
+    android:fontFamily="@font/regular"
+    android:textColorHighlight="@color/purple_button"
+    android:hint="@string/genre"
+    android:textColor="@color/black"
+    android:textAllCaps="false"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

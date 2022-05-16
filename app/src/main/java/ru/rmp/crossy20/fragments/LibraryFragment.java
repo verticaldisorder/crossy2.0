@@ -1,15 +1,19 @@
 package ru.rmp.crossy20.fragments;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,10 +27,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 import ru.rmp.crossy20.R;
+import ru.rmp.crossy20.activities.ProfileActivity;
 import ru.rmp.crossy20.adapters.LibraryAdapter;
 import ru.rmp.crossy20.models.Book;
 
 public class LibraryFragment extends Fragment {
+    Toolbar toolbar;
+
     RecyclerView libraryRecyclerView;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
@@ -46,6 +53,8 @@ public class LibraryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         libraryRecyclerView = view.findViewById(R.id.library_recyclerview);
+        toolbar = view.findViewById(R.id.toolbar);
+        initToolbar();
         setData();
     }
 
@@ -92,4 +101,13 @@ public class LibraryFragment extends Fragment {
                     }
                 });
     }
+
+    private void initToolbar() {
+        toolbar.setTitle("library");
+        toolbar.setTitleTextColor(Color.BLACK);
+        getActivity().setActionBar(toolbar);
+
+        getActivity().getActionBar().setTitle("Библиотека");
+    }
+
 }

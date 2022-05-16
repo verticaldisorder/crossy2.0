@@ -1,10 +1,12 @@
 package ru.rmp.crossy20.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +41,7 @@ public class AllApplicationsFragment extends Fragment {
     static boolean isClicked = false;
 
     RecyclerView recyclerView;
+    Toolbar toolbar;
     ArrayList<Exchange> exchanges = new ArrayList<>();
 
     public AllApplicationsFragment() {
@@ -58,7 +61,8 @@ public class AllApplicationsFragment extends Fragment {
         System.out.println("EXCHANGES AFTER SETTING: " + exchanges.toString());
         recyclerView = view.findViewById(R.id.all_applications_recyclerview);
 
-
+        toolbar = view.findViewById(R.id.toolbar);
+        initToolbar();
 
     }
 
@@ -171,5 +175,11 @@ public class AllApplicationsFragment extends Fragment {
     public static boolean isPositiveButtonClicked() {
         isClicked = true;
         return isClicked;
+    }
+
+    private void initToolbar() {
+        toolbar.setTitle("Заявки");
+        toolbar.setTitleTextColor(Color.BLACK);
+        getActivity().setActionBar(toolbar);
     }
 }

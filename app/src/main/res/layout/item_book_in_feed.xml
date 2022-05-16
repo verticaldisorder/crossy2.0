@@ -1,97 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/card_application_in_feed"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background"
-    android:orientation="vertical"
-    android:clickable="true">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
 
-    <TextView
-        android:id="@+id/item_feed_username_textview"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:text="nick"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bold"
-        android:textSize="20sp"
-        />
+    android:clickable="true"
+    android:focusable="true"
+    android:checkable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:backgroundTint="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:text="публикует"
-        android:textColor="@color/hints"
-        android:fontFamily="@font/regular"
-        android:textSize="15sp"
-        />
-
-
-    <TextView
-        android:id="@+id/item_feed_author_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:fontFamily="@font/bold"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:text="text"/>
-
-    <TextView
-        android:id="@+id/item_feed_title_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:clickable="true"
-        android:fontFamily="@font/bold"
-        android:onClick="onClick"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:text="text"/>
-
-    <TextView
-        android:id="@+id/item_feed_genre_textview"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textColor="@color/hints"
-        android:fontFamily="@font/regular"
-        android:textSize="15sp"
-        android:text="text"
-        />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/item_feed_set_application_book_button"
-        android:layout_width="200dp"
-        android:layout_height="36dp"
-        android:text="Отправить заявку"
-        android:fontFamily="@font/regular"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/purple_button_enabled"
-        style="@style/Widget.AppCompat.Button" />
-
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:layout_marginTop="6dp"
-        android:background="@color/gray_mercury"
-        />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:elevation="10dp"
+        android:outlineProvider="bounds"
+        android:stateListAnimator="@null"
+        android:orientation="vertical"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/item_feed_username_textview"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:text="nick"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bold"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:text="публикует"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/hints"
+            android:fontFamily="@font/regular"
+            android:textSize="15sp"
+            />
+
+
+        <TextView
+            android:id="@+id/item_feed_author_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:fontFamily="@font/bold"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:text="text"/>
+
+        <TextView
+            android:id="@+id/item_feed_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:clickable="true"
+            android:fontFamily="@font/bold"
+            android:onClick="onClick"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="text"/>
+
+        <TextView
+            android:id="@+id/item_feed_genre_textview"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/hints"
+            android:fontFamily="@font/regular"
+            android:textSize="15sp"
+            android:text="text"
+            />
+
+        <Button
+            android:id="@+id/item_feed_set_application_book_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Отправить заявку"
+            android:fontFamily="@font/bold"
+            android:textSize="15sp"
+            android:textColor="@color/purple_button"
+            android:textAllCaps="true"
+            android:layout_gravity="right"
+            android:paddingRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

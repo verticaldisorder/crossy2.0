@@ -7,22 +7,16 @@
     android:background="@color/background"
     tools:context=".fragments.LibraryFragment">
 
-    <TextView
-        android:id="@+id/library_library_textview"
+    <Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bold"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="Библиотека"
-
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        android:layout_height="56dp"
+        app:titleTextColor="@color/black"
+        app:titleMarginStart="32dp"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:backgroundTint="@null"
+        android:background="@color/yellow_button"
+        tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -30,8 +24,8 @@
         android:id="@+id/library_recyclerview"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/library_library_textview"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
     </androidx.recyclerview.widget.RecyclerView>

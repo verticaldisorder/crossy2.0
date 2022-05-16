@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingTop="16dp"
+    android:layout_marginTop="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:titleTextColor="@color/black"
+        app:titleMarginStart="32dp"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:backgroundTint="@null"
+        android:background="@color/yellow_button"
+        tools:ignore="MissingConstraints" />
 
     <ListView
         android:id="@+id/messageListView"
@@ -21,50 +31,62 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:layout_height="56dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/messageEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textColor="@color/black"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/chat_text_layout"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
             android:hint="@string/message"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:gravity="left|center"
             android:textColorHint="@color/hints"
+            app:hintTextColor="@color/yellow_button"
             android:fontFamily="@font/regular"
-            android:textColorHighlight="@color/purple_button"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/edit_text_background"
-            style="@style/editTextCustom"
-            android:theme="@style/editTextCustom"/>
+            android:textColorHighlight="@color/yellow_button"
+            app:boxStrokeColor="@color/yellow_button">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/messageEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:inputType="text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/sendButton"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:enabled="false"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="124dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/yellow_button_enabled"
-            android:textSize="15dp"
-            android:fontFamily="@font/regular"
-            style="@style/buttonCustom"
-            android:theme="@style/buttonCustom"
-            android:text="@string/send"/>
+            android:fontFamily="@font/bold"
+            android:text="@string/send"
+            android:textAllCaps="true"
+
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:indicatorColor="@color/purple_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 

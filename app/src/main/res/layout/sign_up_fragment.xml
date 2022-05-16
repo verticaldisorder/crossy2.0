@@ -15,9 +15,9 @@
         android:text="@string/registration"
         android:fontFamily="@font/bold"
         android:textColor="@color/black"
-        android:textSize="55dp"
+        android:textSize="48sp"
         android:gravity="center"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="35dp"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
-        android:textSize="20dp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         android:text="@string/create_your_account"
         android:gravity="center"
@@ -40,97 +40,133 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/sign_up_email_edittext"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sign_up_email_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:gravity="left"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:layout_marginTop="30dp"
-        android:textColor="@color/black"
-        android:hint="@string/email"
         android:textColorHint="@color/hints"
+        app:hintTextColor="@color/purple_button"
         android:fontFamily="@font/regular"
         android:textColorHighlight="@color/purple_button"
-        android:inputType="textEmailAddress"
-        android:background="@drawable/edit_text_background"
-        style="@style/editTextCustom"
+        app:boxStrokeColor="@color/purple_button"
 
         app:layout_constraintTop_toBottomOf="@id/sign_up_create_account_textview"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/sign_up_nickname_edittext"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_up_email_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sign_up_nickname_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:layout_marginLeft="45dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/black"
         android:hint="@string/nickname"
-        android:textColorHint="@color/hints"
-        android:fontFamily="@font/regular"
-        android:textColorHighlight="@color/purple_button"
-        android:inputType="text"
-        android:background="@drawable/edit_text_background"
-        style="@style/editTextCustom"
-
-        app:layout_constraintTop_toBottomOf="@id/sign_up_email_edittext"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/sign_up_password_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:gravity="left"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:layout_marginTop="30dp"
-        android:textColor="@color/black"
+        android:textColorHint="@color/hints"
+        app:hintTextColor="@color/purple_button"
+        android:fontFamily="@font/regular"
+        android:textColorHighlight="@color/purple_button"
+        app:boxStrokeColor="@color/purple_button"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_email_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_up_nickname_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="text"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sign_up_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/password"
-        android:textColorHint="@color/hints"
-        android:fontFamily="@font/regular"
-        android:textColorHighlight="@color/purple_button"
-        android:inputType="textPassword"
-        android:background="@drawable/edit_text_background"
-        style="@style/editTextCustom"
-
-        app:layout_constraintTop_toBottomOf="@id/sign_up_nickname_edittext"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/sign_up_address_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:gravity="left"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:layout_marginTop="30dp"
-        android:textColor="@color/black"
-        android:hint="@string/address"
         android:textColorHint="@color/hints"
+        app:hintTextColor="@color/purple_button"
         android:fontFamily="@font/regular"
         android:textColorHighlight="@color/purple_button"
-        android:inputType="text"
-        android:background="@drawable/edit_text_background"
-        style="@style/editTextCustom"
+        app:boxStrokeColor="@color/purple_button"
 
-        app:layout_constraintTop_toBottomOf="@id/sign_up_password_edittext"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_nickname_layout"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_up_password_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sign_up_address_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/address"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:gravity="left"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="30dp"
+        android:textColorHint="@color/hints"
+        app:hintTextColor="@color/purple_button"
+        android:fontFamily="@font/regular"
+        android:textColorHighlight="@color/purple_button"
+        app:boxStrokeColor="@color/purple_button"
+
+        app:layout_constraintTop_toBottomOf="@id/sign_up_password_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_up_address_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="text"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/sign_up_hand_over_personally_checkbox"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="45dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -140,14 +176,14 @@
         android:textSize="20dp"
         style="@style/checkboxCustom"
 
-        app:layout_constraintTop_toBottomOf="@id/sign_up_address_edittext"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_address_layout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/sign_up_hand_on_post_checkbox"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="45dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -162,19 +198,25 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_up_registration_button"
-        android:layout_width="330dp"
-        android:layout_height="68dp"
+        android:layout_width="304dp"
+        android:layout_height="48dp"
         android:text="@string/sign_in"
-        android:fontFamily="@font/regular"
-        android:textSize="30dp"
-        android:textColor="@color/black"
-        android:textAllCaps="false"
+        android:fontFamily="@font/bold"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/yellow_button_enabled"
-        style="@style/Widget.AppCompat.Button"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/purple_button_enabled"
+        style="@style/Widget.Material3.Button"
+        app:backgroundTint="@null"
+        android:shadowColor="@color/black"
+
+        android:elevation="10dp"
+        android:outlineProvider="bounds"
+        android:stateListAnimator="@null"
 
         app:layout_constraintTop_toBottomOf="@id/sign_up_hand_on_post_checkbox"
         app:layout_constraintLeft_toLeftOf="parent"

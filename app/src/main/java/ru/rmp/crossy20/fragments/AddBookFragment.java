@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.security.SecurityPermission;
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +31,9 @@ public class AddBookFragment extends Fragment {
     EditText author;
     Spinner genre;
     Button addButton;
+    static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    static FirebaseUser user = mAuth.getCurrentUser();
+
 
     public AddBookFragment() {
         super(R.layout.library_fragment);
@@ -65,10 +71,11 @@ public class AddBookFragment extends Fragment {
     }
 
     private void initButton() {
+        System.out.println("DISPLAY NAME IN INIT BUTTON: " + user.getDisplayName());
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (FirebaseManager.addBook(author.getText().toString(), title.getText().toString(), genre.getSelectedItem().toString())) {
+                if (FirebaseManager.addBook(author.getText().toString(), title.getText().toString(), genre.getSelectedItem().toString(), user.getDisplayName())) {
                     getParentFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container_profile_activity, ProfileFragment.newInstance(), null)

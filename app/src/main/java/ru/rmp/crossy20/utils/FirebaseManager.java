@@ -37,11 +37,11 @@ public class FirebaseManager {
 
     static CollectionReference bookholderReference = db.collection("bookholder");
 
-    public static boolean addBook(String author, String title, String genre) {
+    public static boolean addBook(String author, String title, String genre, String username) {
         Map<String, Object> bookMap = new HashMap<>();
         bookMap.put("author", author);
         bookMap.put("bookholder_id", user.getUid());
-        bookMap.put("bookholder_nickname", user.getDisplayName());
+        bookMap.put("bookholder_nickname", username);
         bookMap.put("genre_id", genre);
         bookMap.put("is_crossed", false);
         bookMap.put("title", title);

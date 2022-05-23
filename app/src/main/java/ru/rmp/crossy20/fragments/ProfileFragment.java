@@ -155,6 +155,9 @@ public class ProfileFragment extends Fragment {
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                         .setDisplayName(nickname.getText().toString())
                         .build();
+                user.updateProfile(profileUpdates);
+
+                System.out.println("DISPLAY NAME IN PROFILE: " + user.getDisplayName());
 
                 StorageReference picRef = storageReference.child(task.getResult().getString("nickname"));
 
